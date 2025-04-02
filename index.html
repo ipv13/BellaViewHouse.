@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>House Rental Direct Booking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <style>
+        /* Light natural olive color scheme */
+        body {
+            background-color: #f9f9f3;
+            /* Light, natural background */
+            color: #555;
+        }
+
+        .navbar {
+            background-color: #a8a67c;
+            /* Lighter olive for the navbar */
+        }
+
+        .navbar-brand {
+            color: #40551f;
+            font-weight: bold;
+            font-size: 2.4rem; /* Increased font size */
+        }
+
+        .navbar-brand:hover {
+            color: #e0e0b0;
+        }
+
+        h2 {
+            color: #8a8a5a;
+        }
+
+        .btn-primary {
+            background-color: #a8a67c;
+            border-color: #a8a67c;
+        }
+
+        .btn-primary:hover {
+            background-color: #8c8c5a;
+            border-color: #8c8c5a;
+        }
+
+        .host-img {
+            color: #40551f;
+            font-size: 1.5rem; /* Increased font size */
+        }
+
+        .form-label {
+            color: #6c6c4a;
+        }
+        h3 {
+            font-size: 1.5rem; /* Adjust this value as needed */
+            color: #8a8a5a;
+        }
+        h4 {
+            font-size: 1.0rem; /* Adjust this value as needed */
+            color: #8a8a5a;
+        }
+        .fit-img {
+            object-fit: cover;  /* Ensures the image covers the container without distorting */
+            height: 1000px; /* Sets a fixed height for all images to maintain consistency */
+            width: 100%; /* Ensures images fill the width of the carousel */
+        }
+            /* Increase font size for nav links */
+        /* Increase font size and spacing for nav links */
+        .navbar-nav .nav-link {
+            font-size: 1.5rem; /* Increase font size */
+            font-weight: bold;
+            letter-spacing: 1px; /* Space between letters */
+            margin: 0 5px; /* Space between words */
+            border-left: 2px solid #ddd;
+            padding-left: 15px; /* Space after the bar */
+        }
+        /* Remove bar from the first item */
+        .navbar-nav .nav-item:first-child .nav-link {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* Increase font size and spacing for "Book Now" button */
+        .navbar-nav .btn {
+            font-size: 1.5rem; /* Increase font size */
+            padding: 10px 20px; /* Adjust button padding */
+            letter-spacing: 2px; /* Space between letters */
+            margin-left: 20px; /* Space between button and other links */
+        }
+        .navbar-brand span {
+            margin-left: 30px; /* Move text right */
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .location-card {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-left: 5px solid #8a8a5a;
+            border-right: 5px solid #8a8a5a;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .location-card i {
+            color: #8a8a5a;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .location-card:hover {
+            transform: translateX(5px);
+        }
+        .fit-img {
+            max-width: 100%;
+            max-height: 90vh; /* Ensures it doesn't overflow */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Prevents distortion */
+        }
+        /* Custom style for a larger modal */
+        .modal-lg-custom {
+            max-width: 90%; /* Increase the width to 90% of the screen width */
+        }
+        .carousel-inner img {
+            max-width: 100%;
+            max-height: 80vh; /* Keeps images from getting too tall */
+            object-fit: cover; /* Ensures proper cropping */
+        }
+        .carousel {
+            max-width: 1200px; /* Adjust as needed */
+            margin: auto;
+        }
+        .feature-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #f8f9fa;
+        }
+        .feature-box i {
+            font-size: 20px;
+            color: black;
+            background-color: #f8f9fa;
+        }
+        .sleep-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #f8f9fa;
+        }
+        .sleep-box i {
+            color: black;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light"
+    style="background-image: url('photob/image14.jpg'); background-size: cover; background-position: center; min-height: 600px; position: relative;">
+    <!-- Background Overlay -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
+    <div class="container-fluid text-white py-2" style="position: absolute; top:10px; left:30px; right:200px; z-index: 1;">
+        <div class="row-6">
+            <span class="me-3"><i class="fas fa-phone-alt" style="font-size: 20px;"></i> +30 6946335740</span>
+            <span class="me-3"><i class="fas fa-envelope" style="font-size: 20px;"></i> email@example.com</span>
+        </div>
+        <div class="row-6">
+            <span class="me-3">
+                <a href="https://www.instagram.com/kolymbiabellaviewhouse" target="_blank"
+                    style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:240px;">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </span>
+            <span>
+                <a href="https://www.facebook.com/profile.php?id=61573425854038" target="_blank"
+                    style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:210px;">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </span>
+            <span>
+                <a href="https://g.co/kgs/vd5aYf1" target="_blank"
+                    style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:170px;">
+                    <i class="fab fa-google"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="container my-5" style="position: relative;  z-index: 1;">
+        <a class="navbar-brand" href="#">
+            <img src="photos/logo.jpeg" alt="Logo" width="180" height="180" class="d-inline-block align-middle" style="border-radius: 40%;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#home" style="color: white;">Home</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" style="color: white;">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#facilities" style="color: white;">Facilities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Frequently Asked Questions" style="color: white;">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#host" style="color: white;">Host</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="btn btn-primary" href="#bookingForm" style="color: white;">Book Now</a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Booking Request Form -->
+<section id="bookingForm" class="container my-5 p-4 bg-light shadow rounded-3 " style="position: relative; top: -100px; left: 0; right: 0; z-index: 2;">
+    <h2 class="mb-3 text-center">Request Special Offer</h2>
+    <form action="backend/process_booking.php" method="post">
+        <div class="row mb-1">
+            <div class="col-md-2">
+                <label for="checkIn" class="form-label">Check-in Date</label>
+                <input type="text" class="form-control" id="checkIn" name="checkIn" placeholder="dd-mm-yyyy" required readonly>
+            </div>
+            <div class="col-md-2">
+                <label for="checkInTime" class="form-label">Check-in Time</label>
+                <input type="time" class="form-control" id="checkInTime" name="checkInTime" required>
+            </div>
+            <div class="col-md-2">
+                <label for="checkOut" class="form-label">Check-out Date</label>
+                <input type="text" class="form-control" id="checkOut" name="checkOut" placeholder="dd-mm-yyyy" required readonly>
+            </div>
+            <div class="col-md-2">
+                <label for="checkOutTime" class="form-label">Check-out Time</label>
+                <input type="time" class="form-control" id="checkOutTime" name="checkOutTime" required>
+            </div>
+            <div class="col-md-2">
+                <label for="adults" class="form-label">Number of Adults</label>
+                <input type="number" class="form-control" id="adults" name="adults" placeholder="Number of adults" required min="1"
+                    required max="5">
+            </div>
+            <div class="col-md-2">
+                <label for="children" class="form-label">Number of Children</label>
+                <input type="number" class="form-control" id="children" name="children" placeholder="Number of children" min="0"
+                    required max="4">
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-4">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Your full name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="col-md-4">
+                <label for="telephone" class="form-label">Telephone Number</label>
+                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Your telephone number" required>
+            </div>
+        </div>
+        <div class="mb-1">
+            <label for="specialRequests" class="form-label">Special Requests</label>
+            <textarea class="form-control" id="specialRequests" name="specialRequests" rows="4"
+                placeholder="Any special requirements?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Send Request</button>
+    </form>
+</section>
+
+<!-- Info -->
+<div class="container mt-4" style="position: relative; top: -100px;">
+    <div class="row g-3">
+        <!-- Sleeping Arrangements -->
+        <div class="col-md-6">
+            <div class="sleep-box">
+                <p><strong>Bedroom 1:</strong> 1 queen bed <i class="fa-solid fa-bed"></i></p>
+                <p><strong>Bedroom 2:</strong> 1 queen bed <i class="fa-solid fa-bed"></i></p>
+                <p><strong>Living room:</strong> 1 sofa bed <i class="fa-solid fa-couch"></i></p>
+                <p><strong>Bathrooms:</strong> 2 bathrooms <i class="fa-solid fa-bath"></i> <i class="fa-solid fa-bath"></i></p>
+                <p><i class="fa-solid fa-baby-carriage"></i> Free crib available on request</p>
+            </div>
+        </div>
+        <div class="col-md-3" style="position:relative;">
+            <div class="feature-box">
+                <i class="fa-solid fa-ruler-combined"></i> 60 m² size
+            </div>
+        </div>
+        <div class="col-md-3" style="position:relative;">
+            <div class="feature-box">
+                <i class="fa-solid fa-wifi"></i> Free High-speed Wi-Fi
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 justify-content-end">
+        <div class="col-md-3" style="position:relative; top:-145px;">
+            <div class="feature-box">
+                <i class="fa-solid fa-car"></i> Free parking
+            </div>
+        </div>
+        <div class="col-md-3" style="position:relative; top:-145px;">
+            <div class="feature-box">
+                <i class="fa-solid fa-hot-tub-person"></i> Hot tub/Jacuzzi
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 justify-content-end">
+        <div class="col-md-3" style="position:relative; top:-115px;">
+            <div class="feature-box">
+                <i class="fa-solid fa-seedling"></i> Garden
+            </div>
+        </div>
+        <div class="col-md-3" style="position:relative; top:-115px;">
+            <div class="feature-box">
+                <i class="fa-solid fa-umbrella-beach"></i> Terrace
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Photo Section -->
+<div class="container mt-4" style="position: relative; top: -160px;">
+    <div class="row">
+        <!-- Πρώτη γραμμή -->
+        <div class="col-md-8">
+            <img src="photob/image30.jpg" class="img-fluid rounded w-100" data-bs-toggle="modal"
+                data-bs-target="#imageModal" onclick="openCarousel(0)">
+        </div>
+        <div class="col-md-4 d-flex flex-column">
+            <img src="photob/image14.jpg" class="img-fluid rounded mb-2" data-bs-toggle="modal"
+                data-bs-target="#imageModal" onclick="openCarousel(3)">
+            <img src="photob/image7.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(16)">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <!-- Δεύτερη γραμμή με 5 εικόνες -->
+        <div class="col-md-2">
+            <img src="photob/image21.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(6)">
+        </div>
+        <div class="col-md-2">
+            <img src="photob/image8.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(19)">
+        </div>
+        <div class="col-md-2">
+            <img src="photob/image20.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(8)">
+        </div>
+        <div class="col-md-2">
+            <img src="photob/image29.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(29)">
+        </div>
+        <div class="col-md-2">
+            <img src="photob/image28.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
+                onclick="openCarousel(23)">
+        </div>
+        <div class="col-md-2">
+            <div class="position-relative d-inline-block">
+                <img src="photob/image27.jpg" class="img-fluid rounded" data-bs-toggle="modal"
+                    data-bs-target="#imageModal" onclick="openCarousel(25)">
+                <div class="position-absolute top-50 start-50 translate-middle text-white bg-dark bg-opacity-50 p-2 rounded"
+                    data-bs-toggle="modal" data-bs-target="#imageModal" onclick="openCarousel(25)"
+                    style="cursor: pointer;">
+                    +20 photos
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal with Carousel -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Carousel -->
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="carouselItems">
+                        <!-- Images will be injected here -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="container my-5" style="position: relative; top: -50px;">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Discover Bella View House</h2>
+            <p class="lead">
+                Welcome to Bella View House, a serene retreat nestled in the heart of Kolymbia, where comfort meets
+                natural beauty.
+                Perfectly positioned just 500 meters from the beach, our cozy two-bedroom home offers the ideal blend of
+                relaxation and adventure.
+            </p>
+            <p class="lead">
+                At Bella View House, you wake up to the gentle warmth of the Mediterranean sun pouring through the
+                windows, while
+                breathtaking mountain views create a stunning backdrop for your morning coffee. Whether you're lounging
+                on the terrace
+                or enjoying a peaceful evening indoors, the surrounding landscape invites you to unwind and reconnect
+                with nature.
+            </p>
+            <p class="lead">
+                Kolymbia's charm lies in its perfect balance of tranquility and accessibility. With the beach just a
+                short stroll away,
+                you can dip your toes in the Aegean Sea by day and retreat to the calm embrace of the mountains by
+                night.
+                Local tavernas, shops, and attractions are within easy reach, making it effortless to explore the best
+                that Rhodes has to offer.
+            </p>
+            <p class="lead">
+                Bella View House is more than just a place to stay; it's a place to create lasting memories.
+                Whether you're seeking a romantic getaway, a family vacation, or a peaceful escape, our home provides
+                the warmth and comfort you deserve.
+            </p>
+            <p class="lead">
+                Experience the magic of Kolymbia from a fresh perspective. We can't wait to welcome you to Bella View
+                House.
+            </p>
+        </div>
+    </div>
+    <h3 class="text-center mt-4 mb-4"> Distances to Top Attractions</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Nearest Beach:</strong> 500 m</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Tsambika Beach:</strong> 5 km</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Seven Springs:</strong> 6 km</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Anthony Quinn Bay:</strong> 10 km</span>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Kalithea Springs:</strong> 23 km</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Rhodes Old Town:</strong> 24 km</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Lindos Acropolis:</strong> 27 km</span>
+            </div>
+            <div class="location-card justify-content-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Rhodes Airport:</strong> 28 km</span>
+            </div>
+        </div>
+    </div>
+    </section>
+</section>
+
+<!-- Facilities Section -->
+<section id="facilities" class="container my-4">
+    <div class="col-md-12 p-4 border rounded-4 shadow-lg" style="border-radius: 100%; background-color:#f8f9fa;">
+        <div class="row">
+            <h2 class="mb-4 text-center">🌟 Facilities</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h3>🚘 Parking</h3>
+                    <ul>
+                        <li>Private parking on-site, no reservation needed.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🌐 Internet</h3>
+                    <ul>
+                        <li>High-speed Wi-Fi available everywhere at no charge.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🍳 Kitchen</h3>
+                    <ul>
+                        <li>Coffee maker, Oven, Dishwasher, Refrigerator, etc.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛌 Bedroom</h3>
+                    <ul>
+                        <li>Spacious wardrobe.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛁 Bathroom</h3>
+                    <ul>
+                        <li>Hot tub, Free toiletries.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛋️ Living Room</h3>
+                    <ul>
+                        <li>Sofa, Dining area for relaxing moments.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>📺 Media & Technology</h3>
+                    <ul>
+                        <li>Smart TV in every room.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛠️ Room Amenities</h3>
+                    <ul>
+                        <li>Private entrance, Ironing facilities.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>♿ Accessibility</h3>
+                    <ul>
+                        <li>Upper floors accessible by stairs only.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🌳 Outdoor Areas</h3>
+                    <ul>
+                        <li>Veranda, Garden, Balcony.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛀 Wellness</h3>
+                    <ul>
+                        <li>Hot tub/Jacuzzi for ultimate relaxation.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>☕ Food & Drink</h3>
+                    <ul>
+                        <li>Coffee/tea maker.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🏖️ Activities</h3>
+                    <ul>
+                        <li>Beach at 500 meters.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🌄 View</h3>
+                    <ul>
+                        <li>Mountain, Garden, and partial Sea View.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🏠 Building Characteristics</h3>
+                    <ul>
+                        <li>Standalone property.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🌟 Miscellaneous</h3>
+                    <ul>
+                        <li>Air conditioning, Non-smoking throughout.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🛡️ Safety & Security</h3>
+                    <ul>
+                        <li>Fire extinguishers, Smoke detectors.</li>
+                    </ul>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <h3>🗣️ Languages Spoken</h3>
+                    <ul>
+                        <li>German, Greek, English.</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</section>
+    
+
+<!-- Photo Section
+<section id="gallery" class="container my-4">
+    <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="photob/image30.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 1">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image11.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 2">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image13.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 3">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image14.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 4">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image15.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 5">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image16.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 6">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image21.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 7">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image22.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 8">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image1.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 9">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image2.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 10">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image3.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 11">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image17.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 12">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image29.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 13">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image18.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 14">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image6.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 15">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image7.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 16">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image4.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image5.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image8.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image9.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image10.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image26.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image28.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+            <div class="carousel-item">
+                <img src="photob/image27.jpg" class="d-block w-100 img-fluid rounded fit-img" alt="House Photo 17">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div> -->
+
+<!-- Frequently Asked Questions-->
+<section id="Frequently Asked Questions" class="container mt-5">
+    <h2 class="text-center mb-4 display-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        <!-- Question 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    How many guests can sleep at Bella View House?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Bella View House can comfortably accommodate:
+                    <ul>
+                        <li><strong>Up to 6 guests, including 5 adults and 1 child (or at least 1 adult)</strong></li>
+                    </ul>
+                    Enjoy your stay with plenty of space for family or friends!
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    What are the check-in and check-out times at Bella View House?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <strong>Check-in:</strong> From 15:00 onwards.<br>
+                    <strong>Check-out:</strong> By 11:00 AM.<br>
+                    Make sure to relax and enjoy your time before checking out!
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    How many bedrooms does Kolymbia Bella View House have?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Kolymbia Bella View House features:
+                    <ul>
+                        <li><strong>2 spacious bedrooms</strong> with comfortable bedding.</li>
+                    </ul>
+                    Perfect for small groups or families looking for a relaxing stay.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    How much does it cost to stay at Bella View House?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Prices vary depending on your stay, but to get an accurate price, please enter your travel
+                    dates.<br>
+                    Our prices are competitive and offer great value for your comfort and location!
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    How far is Bella View House from the center of Kolymbia?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Bella View House is located just <strong>1.3 km</strong> from the vibrant center of Kolymbia.<br>
+                    A short drive or walk will take you to all the shops, restaurants, and attractions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    How close to the beach is Bella View House?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    The nearest beach is only <strong>500 meters</strong> away, so you can easily walk there in just a
+                    few minutes.<br>
+                    Enjoy the sun, sea, and sand at your leisure!
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Host Section -->
+<section id="host" class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-4 border rounded-4 shadow-lg" style="border-color: #8a8a5a; border-radius: 100%; background-color:#f8f9fa ">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <a class="host-img">
+                        <img src="photos/host.jpg" alt="Host" width="120" height="150"
+                            style="border-radius: 30%; border: 5px solid #8a8a5a; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <p class="fw-light fst-italic text-muted" style="font-size: 1.2rem;">
+                        Dear Guests, 
+                        <p class="fw-light fst-italic text-muted" style="font-size: 1.2rem;">Welcome to your home away from home! We’re beyond excited to host you and ensure your stay is nothing short of
+                        exceptional. Our space is carefully designed with your comfort in mind, offering everything you need for a truly
+                        memorable experience. Whether you're here to unwind or explore, we’re here to assist you every step of the way. Should
+                        you have any questions or need recommendations, don’t hesitate to reach out. We hope you make lasting memories during
+                        your stay!</p>
+                        <p class="fw-light fst-italic text-muted" style="font-size: 1.2rem;">Warm regards, <p class="fw-light fst-italic text-muted" style="font-size: 1.2rem;">Pantelis Volonakis</p>
+                    </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Include jQuery and jQuery UI for the datepicker -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to disable multiple date ranges and specific dates
+        function disableDates(date) {
+            const disabledDates = ["20-02-2025", "25-02-2025", "01-03-2025"];
+            const disabledRanges = [
+                { start: new Date("1990-01-01"), end: new Date("2025-03-27") },
+                { start: new Date("2025-06-15"), end: new Date("2025-06-22") },
+                { start: new Date("2025-07-02"), end: new Date("2025-07-10") }
+            ];
+
+            const formattedDate = $.datepicker.formatDate('dd-mm-yy', date);
+
+            // Check for specific disabled dates
+            if (disabledDates.includes(formattedDate)) {
+                return [false];
+            }
+
+            // Check for disabled ranges
+            for (let range of disabledRanges) {
+                if (date >= range.start && date <= range.end) {
+                    return [false];
+                }
+            }
+
+            return [true];
+        }
+
+        // Initialize the datepicker
+        $("#checkIn, #checkOut").datepicker({
+            dateFormat: "dd-mm-yy",
+            minDate: 0,
+            beforeShowDay: disableDates,
+        });
+
+        // Ensure Check-out date is after Check-in date
+        $("#checkIn").on("change", function () {
+            var checkInDate = $(this).datepicker("getDate");
+            var minCheckOutDate = new Date(checkInDate);
+            minCheckOutDate.setDate(minCheckOutDate.getDate() + 1); // Check-out must be at least 1 day after Check-in
+            $("#checkOut").datepicker("option", "minDate", minCheckOutDate);
+        });
+
+        // Make sure that users cannot manually enter dates (focus event on both inputs)
+        $("#checkIn, #checkOut").on("focus", function () {
+            $(this).blur();
+        });
+
+        // Initialize the timepicker for easier time selection
+        $("#checkInTime, #checkOutTime").timepicker({
+            timeFormat: "HH:mm",
+            interval: 30, // 30-minute intervals
+            minTime: "12:00am", // Starting time
+            maxTime: "11:59pm", // Ending time
+            defaultTime: "12:00pm", // Default time displayed
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+    });
+</script>
+
+<script>
+    // Array of images
+    const images = [
+        'photob/image30.jpg',
+        'photob/image11.jpg',
+        'photob/image13.jpg',
+        'photob/image14.jpg',
+        'photob/image15.jpg',
+        'photob/image16.jpg',
+        'photob/image21.jpg',
+        'photob/image22.jpg',
+        'photob/image20.jpg',
+        'photob/image1.jpg',
+        'photob/image2.jpg',
+        'photob/image3.jpg',
+        'photob/image17.jpg',
+        'photob/image29.jpg',
+        'photob/image18.jpg',
+        'photob/image6.jpg',
+        'photob/image7.jpg',
+        'photob/image4.jpg',
+        'photob/image5.jpg',
+        'photob/image8.jpg',
+        'photob/image9.jpg',
+        'photob/image10.jpg',
+        'photob/image26.jpg',
+        'photob/image28.jpg',
+        'photob/image23.jpg',
+        'photob/image27.jpg',
+        'photob/image12.jpg'
+    ];
+    function openCarousel(selectedIndex) {
+        const carouselItems = document.getElementById('carouselItems');
+        carouselItems.innerHTML = ''; // Clear existing items
+
+        // Create carousel items dynamically based on the images array
+        images.forEach((src, index) => {
+            const isActive = index === selectedIndex ? 'active' : ''; // Make the selected image active
+            const item = `
+                <div class="carousel-item ${isActive}">
+                    <img src="${src}" class="d-block w-100" alt="Gallery Image">
+                </div>
+            `;
+            carouselItems.innerHTML += item;
+        });
+    }
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
