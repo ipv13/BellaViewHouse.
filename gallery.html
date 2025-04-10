@@ -40,16 +40,39 @@
         }
         /* Custom style for a larger modal */
         .modal-lg-custom {
-            max-width: 90%; /* Increase the width to 90% of the screen width */
+            max-width: 90%;
         }
+
         .carousel-inner img {
             max-width: 100%;
-            max-height: 80vh; /* Keeps images from getting too tall */
-            object-fit: cover; /* Ensures proper cropping */
+            max-height: 80vh;
+            object-fit: contain; /* 'contain' preserves full image in modal */
         }
+
         .carousel {
-            max-width: 1200px; /* Adjust as needed */
+            max-width: 1200px;
             margin: auto;
+        }
+
+        .img-fluid-custom {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2; /* Keeps a consistent aspect ratio for 1200x800 look */
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -142,57 +165,54 @@
 
     <main class="container my-5">
         <!-- Photo Section -->
-        <div class="container mt-4" style="position: relative;">
-            <div class="row">
-                <!-- Πρώτη γραμμή -->
+        <div class="container mt-4 position-relative">
+            <div class="row g-3">
+                <!-- First Row -->
                 <div class="col-md-8">
-                    <img src="photob/image30.jpg" class="img-fluid rounded w-100" data-bs-toggle="modal"
+                    <img src="house-photos/31-modern-minimalist-house-exterior-kolymbia-1.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
                         data-bs-target="#imageModal" onclick="openCarousel(0)">
                 </div>
-                <div class="col-md-4 d-flex flex-column">
-                    <img src="photob/image14.jpg" class="img-fluid rounded mb-2" data-bs-toggle="modal"
-                        data-bs-target="#imageModal" onclick="openCarousel(3)">
-                    <img src="photob/image7.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(16)" style="margin-top:auto">
+                <div class="col-md-4 d-flex flex-column justify-content-between">
+                    <img src="house-photos/2-cozy-living-room-large-window-smart-tv-2.jpg" class="img-fluid-custom rounded mb-2" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(1)">
+                    <img src="house-photos/3-modern-open-kitchen-dining-area.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(2)">
                 </div>
             </div>
-        
-            <div class="row mt-3">
-                <!-- Δεύτερη γραμμή με 5 εικόνες -->
-                <div class="col-md-2">
-                    <img src="photob/image21.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(6)">
+    
+            <!-- Second Row with 6 Images -->
+            <div class="row g-3 mt-3">
+                <div class="col-md-2 col-6">
+                    <img src="house-photos/17-elegant-modern-bathroom-with-marble-tiles.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(16)">
                 </div>
-                <div class="col-md-2">
-                    <img src="photob/image8.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(19)">
+                <div class="col-md-2 col-6">
+                    <img src="house-photos/23-modern-bedroom-balcony-city-mountain-view.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(22)">
                 </div>
-                <div class="col-md-2">
-                    <img src="photob/image20.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(8)">
+                <div class="col-md-2 col-6">
+                    <img src="house-photos/25-private-terrace-hot-tub-loungers-view.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(24)">
                 </div>
-                <div class="col-md-2">
-                    <img src="photob/image29.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(13)">
+                <div class="col-md-2 col-6">
+                    <img src="house-photos/14-kolymbia-house-bedroom-double-bed-modern-decor-3.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(13)">
                 </div>
-                <div class="col-md-2">
-                    <img src="photob/image28.jpg" class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#imageModal"
-                        onclick="openCarousel(23)">
+                <div class="col-md-2 col-6">
+                    <img src="house-photos/28-kolymbia-house-garden-mountain-view-exterior.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(27)">
                 </div>
-                <div class="col-md-2">
-                    <div class="position-relative d-inline-block">
-                        <img src="photob/image27.jpg" class="img-fluid rounded" data-bs-toggle="modal"
-                            data-bs-target="#imageModal" onclick="openCarousel(25)">
-                        <div class="position-absolute top-50 start-50 translate-middle text-white bg-dark bg-opacity-50 p-2 rounded"
-                            data-bs-toggle="modal" data-bs-target="#imageModal" onclick="openCarousel(25)"
-                            style="cursor: pointer;">
-                            +20 photos
-                        </div>
+                <div class="col-md-2 col-6 position-relative">
+                    <img src="house-photos/27-kolymbia-house-garden-mountain-view-exterior-1.jpg" class="img-fluid-custom rounded" data-bs-toggle="modal"
+                        data-bs-target="#imageModal" onclick="openCarousel(26)">
+                    <div class="image-overlay" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        onclick="openCarousel(25)">
+                        +20 photos
                     </div>
                 </div>
             </div>
         </div>
-        
+    
         <!-- Modal with Carousel -->
         <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg-custom">
@@ -204,7 +224,7 @@
                         <!-- Carousel -->
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner" id="carouselItems">
-                                <!-- Images will be injected here -->
+                                <!-- Images injected dynamically -->
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                                 data-bs-slide="prev">
@@ -222,6 +242,7 @@
             </div>
         </div>
     </main>
+
 
     <!-- Footer -->
     <footer>
@@ -293,33 +314,35 @@
     <script>
         // Array of images
         const images = [
-            'photob/image30.jpg',
-            'photob/image11.jpg',
-            'photob/image13.jpg',
-            'photob/image14.jpg',
-            'photob/image15.jpg',
-            'photob/image16.jpg',
-            'photob/image21.jpg',
-            'photob/image22.jpg',
-            'photob/image20.jpg',
-            'photob/image1.jpg',
-            'photob/image2.jpg',
-            'photob/image3.jpg',
-            'photob/image17.jpg',
-            'photob/image29.jpg',
-            'photob/image18.jpg',
-            'photob/image6.jpg',
-            'photob/image7.jpg',
-            'photob/image4.jpg',
-            'photob/image5.jpg',
-            'photob/image8.jpg',
-            'photob/image9.jpg',
-            'photob/image10.jpg',
-            'photob/image26.jpg',
-            'photob/image28.jpg',
-            'photob/image23.jpg',
-            'photob/image27.jpg',
-            'photob/image12.jpg'
+            'house-photos/1-modern-minimalist-house-exterior-kolymbia.jpg',
+            'house-photos/2-cozy-living-room-large-window-smart-tv-2.jpg',
+            'house-photos/3-modern-open-kitchen-dining-area.jpg',
+            'house-photos/4-cozy-living-room-large-window.jpg',
+            'house-photos/5-cozy-living-room-large-window-smart-tv-1.jpg',
+            'house-photos/6-cozy-living-room-large-window-smart-tv.jpg',
+            'house-photos/7-modern-open-kitchen-dining-area-1.jpg',
+            'house-photos/8-modern-open-kitchen-dining-area-2.jpg',
+            'house-photos/10-modern-open-concept-dining-kitchen-staircase-bedroom-interior.jpg',
+            'house-photos/11-contemporary-bathroom-walk-in-shower-vanity.jpg',
+            'house-photos/12-modern-tiled-bathroom-shower-with-rainhead.jpg',
+            'house-photos/13-compact-laundry-room-with-front-load-washer-and-wicker-basket.jpg',
+            'house-photos/14-kolymbia-house-bedroom-double-bed-modern-decor-3.jpg',
+            'house-photos/15-cozy-bedroom-wardrobe-natural-light-windows.jpg',
+            'house-photos/16-kolymbia-house-bedroom-double-bed-modern-decor-4.jpg',
+            'house-photos/17-elegant-modern-bathroom-with-marble-tiles.jpg',
+            'house-photos/18-elegant-modern-bathroom-with-marble-tiles-3.jpg',
+            'house-photos/19-luxury-bathroom-shower-panel-with-jet-sprayers-marble-tiles.jpg',
+            'house-photos/20-kolymbia-house-bedroom-double-bed-modern-decor.jpg',
+            'house-photos/21-kolymbia-house-bedroom-double-bed-modern-decor-1.jpg',
+            'house-photos/22-kolymbia-house-bedroom-double-bed-modern-decor-2.jpg',
+            'house-photos/23-modern-bedroom-balcony-city-mountain-view.jpg',
+            'house-photos/24-private-terrace-hot-tub-loungers-sunset-view.jpg',
+            'house-photos/25-private-terrace-hot-tub-loungers-view.jpg',
+            'house-photos/26-private-terrace-hot-tub-loungers-view-1.jpg',
+            'house-photos/27-kolymbia-house-garden-mountain-view-exterior-1.jpg',
+            'house-photos/28-kolymbia-house-garden-mountain-view-exterior.jpg',
+            'house-photos/29-art-photo-1.jpg',
+            'house-photos/30-art-photo-2.jpg'
         ];
         function openCarousel(selectedIndex) {
             const carouselItems = document.getElementById('carouselItems');
