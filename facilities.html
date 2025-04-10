@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="footer.css">
+
     <style>
         /* Light natural olive color scheme */
         body {
@@ -23,6 +24,7 @@
             /* Light, natural background */
             color: #555;
         }
+
         h1 {
             color: black;
         }
@@ -57,41 +59,40 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"
-        style="background-image: url('photob/image14.jpg'); background-size: cover; background-position: center; min-height: 400px; position: relative;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
         <!-- Background Overlay -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
-        <div class="container-fluid text-white py-2"
-            style="position: absolute; top:10px; left:30px; right:200px; z-index: 1;">
+        <div class="overlay"></div>
+    
+        <div class="container-fluid text-white py-2 contact-info">
             <div class="row-6">
-                <span class="me-3"><i class="fas fa-phone-alt" style="font-size: 20px;"></i> +30 6946335740</span>
-                <span class="me-3"><i class="fas fa-envelope" style="font-size: 20px;"></i> email@example.com</span>
+                <span class="me-3"><i class="fas fa-phone-alt"></i> +30 6946335740</span>
+                <span class="me-3"><i class="fas fa-envelope"></i> email@example.com</span>
             </div>
             <div class="row-6">
                 <span class="me-3">
                     <a href="https://www.instagram.com/kolymbiabellaviewhouse" target="_blank"
-                        style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:240px;">
+                        class="social-icon instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </span>
                 <span>
                     <a href="https://www.facebook.com/profile.php?id=61573425854038" target="_blank"
-                        style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:210px;">
+                        class="social-icon facebook">
                         <i class="fab fa-facebook"></i>
                     </a>
                 </span>
                 <span>
-                    <a href="https://g.co/kgs/vd5aYf1" target="_blank"
-                        style="color: inherit; font-size: 24px; text-decoration: none; position: relative; right:170px;">
+                    <a href="https://g.co/kgs/vd5aYf1" target="_blank" class="social-icon google">
                         <i class="fab fa-google"></i>
                     </a>
                 </span>
             </div>
         </div>
-        <div class="container my-5" style="position: relative;  z-index: 1;">
+    
+        <div class="container my-5 navbar-inner">
             <a class="navbar-brand" href="#">
-                <img src="photos/logo.jpeg" alt="Logo" width="180" height="180" class="d-inline-block align-middle"
-                    style="border-radius: 40%;">
+                <img src="photos/logo.jpeg" alt="Logo" width="180" height="180"
+                    class="d-inline-block align-middle logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,30 +101,24 @@
     
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#home" style="color: white;">Home</a>
-                        </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html" style="color: white;">Book</a>
+                        <a class="nav-link" href="index.html">Book</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html" style="color: white;">Gallery</a>
+                        <a class="nav-link" href="gallery.html">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#facilities" style="color: white;">Facilities</a>
+                        <a class="nav-link" href="facilities.html">Facilities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="location.html">Location</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="faq.html" style="color: white;">FAQ</a>
+                        <a class="nav-link" href="faq.html">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="host.html" style="color: white;">Host</a>
+                        <a class="nav-link active" aria-current="page" href="host.html">Host</a>
                     </li>
-                    <!-- <li class="nav-item">
-                            <a class="btn btn-primary" href="#bookingForm" style="color: white;">Book Now</a>
-                        </li> -->
                 </ul>
             </div>
         </div>
@@ -238,7 +233,7 @@
 
             <article class="col-md-4">
                 <h3>🗣️ Languages Spoken</h3>
-                <p>Our team is ready to assist you in  Greek and English—ensuring clear
+                <p>Our team is ready to assist you in Greek and English—ensuring clear
                     communication.</p>
             </article>
         </div>
@@ -258,7 +253,8 @@
                     <div class="col-md-3 offset-lg-1">
                         <div class="h5 text-uppercase fw-bold">Bella View House</div>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0" title="Book">Book</a></li>
+                            <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0" title="Book">Book</a>
+                            </li>
                             <li class="nav-item mb-2"><a href="gallery.html" class="nav-link p-0"
                                     title="Gallery">Gallery</a></li>
                             <li class="nav-item mb-2"><a href="facilities.html" class="nav-link p-0"
@@ -268,29 +264,35 @@
                             </li>
                         </ul>
                     </div>
-    
+
                     <div class="col-md-4">
                         <div class="h5 text-uppercase fw-bold">Contact Us</div>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0" title="Contact Us"><span
-                                        class="bi bi-houses me-1 text-ccc"></span> Kolymbia 851 03, Rhodes - Greece</a></li>
+                            <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0"
+                                    title="Contact Us"><span class="bi bi-houses me-1 text-ccc"></span> Kolymbia 851 03,
+                                    Rhodes - Greece</a></li>
                             <li class="nav-item mb-2"><a href="tel:00306946335740" class="nav-link p-0"
-                                    title="Call +30 6936757426"><span class="bi bi-telephone me-1 text-ccc"></span> +30 6946335740</a></li>
+                                    title="Call +30 6936757426"><span class="bi bi-telephone me-1 text-ccc"></span> +30
+                                    6946335740</a></li>
                             <li class="nav-item mb-2"><a href="mailto:info@bellaviewhouse.com" class="nav-link p-0"
-                                    title="Email info@bellaviewhouse.com"><span class="bi bi-envelope me-1 text-ccc"></span>
+                                    title="Email info@bellaviewhouse.com"><span
+                                        class="bi bi-envelope me-1 text-ccc"></span>
                                     info@bellaviewhouse.com</a></li>
                         </ul>
                         <div class="social-icons mt-2">
                             <a target="_blank" href="https://www.facebook.com/profile.php?id=61573425854038"
-                                title="Bella View House @ Facebook" target="_blank" rel="noreferrer" class="social-icon">
+                                title="Bella View House @ Facebook" target="_blank" rel="noreferrer"
+                                class="social-icon">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             <a target="_blank" href="https://www.instagram.com/kolymbiabellaviewhouse"
-                                title="Bella View House @ Instagram" target="_blank" rel="noreferrer" class="social-icon">
+                                title="Bella View House @ Instagram" target="_blank" rel="noreferrer"
+                                class="social-icon">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a target="_blank" href="https://g.co/kgs/vd5aYf1" title="Bella View House @ Google Business"
-                                target="_blank" rel="noreferrer" class="social-icon">
+                            <a target="_blank" href="https://g.co/kgs/vd5aYf1"
+                                title="Bella View House @ Google Business" target="_blank" rel="noreferrer"
+                                class="social-icon">
                                 <i class="fab fa-google"></i>
                             </a>
                         </div>
