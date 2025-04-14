@@ -1,21 +1,3 @@
-/* Navbar Styles */
-.custom-navbar {
-    background-image: url('house-photos/32-modern-house-interior.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 500px;
-    position: relative;
-}
-
-.custom-navbar .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .contact-info {
     position: absolute;
     top: 10px;
@@ -69,4 +51,8 @@
 .navbar-nav .nav-item:first-child .nav-link {
     border-left: none;
     padding-left: 0;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }

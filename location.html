@@ -84,10 +84,27 @@
         }
         .distance {
             font-weight: bold; /* Make the distance bold */
-            color: #007bff;    /* Set a prominent color for visibility (e.g., blue) */
+            color: #11b7e0;    /* Set a prominent color for visibility (e.g., blue) */
             font-size: 1.1rem; /* Slightly increase font size */
             display: inline-block; /* Ensure it stays inline with the text */
             margin-top: 5px;    /* Add some space above the distance */
+        }
+        /* Inline Critical CSS */
+        .custom-navbar {
+            background-image: url('house-photos/32-modern-house-interior (3).webp');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .custom-navbar .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -101,7 +118,7 @@
     <div class="container-fluid text-white py-2 contact-info">
         <div class="row-6">
             <span class="me-3"><i class="fas fa-phone-alt"></i> +30 6946335740</span>
-            <span class="me-3"><i class="fas fa-envelope"></i> email@example.com</span>
+            <span class="me-3"><i class="fas fa-envelope"></i> bellaviewhouse@gmail.com</span>
         </div>
         <div class="row-6">
             <span class="me-3">
@@ -161,8 +178,20 @@
 
     <!-- Location -->
     <header class="text-white p-2 text-center">
+
+        <!-- Top Decorative Line -->
+        <div class="mx-auto mb-4"
+            style="height: 3px; width: 80px; background: linear-gradient(to right, #000, #aaa, #000); border-radius: 2px;">
+        </div>
+
         <h1 class="display-3 mb-4">Explore the Location</h1>
-        <h2> Bella View House · Kolymbia, Rhodes, Greece</h2>
+        <h2>Bella View House · Kolymbia, Rhodes, Greece</h2>
+
+        <!-- Bottom Decorative Line -->
+        <div class="mx-auto mt-4"
+            style="height: 3px; width: 80px; background: linear-gradient(to right, #000, #aaa, #000); border-radius: 2px;">
+        </div>
+
     </header>
     <div class="container text-center mt-4 mb-4">
         <h3>Stay Close to Tsambika Beach, Seven Springs, Nature Trails, Traditional Tavernas, and Family-Friendly
@@ -357,13 +386,13 @@
                 <div class="col-md-4">
                     <div class="h5 text-uppercase fw-bold">Contact Us</div>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0" title="Contact Us"><span
+                        <li class="nav-item mb-2"><a href="https://g.co/kgs/LxUbLAj" class="nav-link p-0" title="Contact Us"><span
                                     class="bi bi-houses me-1 text-ccc"></span> Kolymbia 851 03, Rhodes - Greece</a></li>
                         <li class="nav-item mb-2"><a href="tel:00306946335740" class="nav-link p-0"
                                 title="Call +30 6936757426"><span class="bi bi-telephone me-1 text-ccc"></span> +30 6946335740</a></li>
-                        <li class="nav-item mb-2"><a href="mailto:info@bellaviewhouse.com" class="nav-link p-0"
-                                title="Email info@bellaviewhouse.com"><span class="bi bi-envelope me-1 text-ccc"></span>
-                                info@bellaviewhouse.com</a></li>
+                        <li class="nav-item mb-2"><a href="mailto:bellaviewhouse@gmail.com" class="nav-link p-0"
+                                title="Email bellaviewhouse@gmail.com"><span class="bi bi-envelope me-1 text-ccc"></span>
+                                bellaviewhouse@gmail.com</a></li>
                     </ul>
                     <div class="social-icons mt-2">
                         <a target="_blank" href="https://www.facebook.com/profile.php?id=61573425854038"
